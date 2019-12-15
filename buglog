@@ -1,0 +1,66 @@
+BUGLOG:
+
+ISSUE 1:
+10/2/19
+Status bar drawn at top of screen and flickering
+Fixed in about an hour: 
+Had to set target_img value to size of status bar
+
+ISSUE 2:
+10/3/19
+Status bar disappeared altogether
+Fixed in 45 minutes with help of T/A
+Had to initialize VGA registers: #9 and #18
+
+ISSUE 3:
+10/4/19
+Typed text was appearing horizontally (orientation of pixels rotated)
+Fixed in 10 minutes
+Had to switch bounds of FONT_HEIGHT and FONT_WIDTH in i and j in nested for loop in textToGraphics function
+
+ISSUE 4:
+10/4/19
+When typing text into status bar, all text would slowly travel left as more text was typed
+Fixed in 30 minutes
+Had to adjust alignment values
+
+ISSUE 5:
+10/5/19
+Text was misaligned. Status message would roll over and the end of message would be at the beginning of the status bar
+Fixed in 5 minutes
+Had to set alignment value of textToGraphics call in create_status_bar function to "center" rather than "right"
+
+ISSUE 6:
+10/6/19
+Status bar was flickering again, even though it was at the bottom
+Fixed in 1 hour
+Had to synchronize the call to create_status_bar in adventure.c by making it grab the msg_lock before and releasing the msg_lock after the call
+
+ISSUE 7:
+10/6/19
+Underscore would not show up on status bar
+Fixed in 30 minutes
+Had to define a variable underscore in create_status_bar and then call textToGraphics.
+Then realized that it still would not show up I had to create another alignment value specifically
+to account for the underscore.
+
+ISSUE 8:
+10/6/19
+Underscore overlapped with other characters being typed and would not disappear when 20th character was typed
+Fixed in 1 hour
+Had to create special condition in create_status_bar function which tested if the inputted text was less than 20 characters.
+Would then make underscore disappear once 20th character was typed. offset the alignment for first 19 characters by 2 pixels
+to account for space for underscore. 20th character would replace underscore, making it look like demo
+
+ISSUE 9:
+10/6/19
+Screen would not scroll when arrow keys were pressed
+Fixed in 1.5 hours
+Had to adjust draw_vert_line to account for i factor when scrolling. Also had to reduce screen height to
+182 pixels to account for discrepancy and finally fixed the issue
+
+ISSUE 10:
+10/6/19
+Status bar not on fleek
+Fixed in lit amount of time
+Set text color and background color to turn ordinary statusbar into hackerman tier command line
